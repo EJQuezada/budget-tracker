@@ -1,9 +1,9 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
-import React from "react";
+import React, { ReactNode } from "react";
 
-function RootProviders({children}: { children: ReactNode }) {
+function RootProviders({ children }: { children: ReactNode }) {
   return (
         <ThemeProvider
             attribute="class"
