@@ -1,5 +1,5 @@
-import Logo from '@/components/logo'
-import React, { ReactNode } from 'react'
+import Logo from '@/components/logo';
+import React, { ReactNode } from 'react';
 
 function layout({ children }: { children:ReactNode }) {
     return (
@@ -10,4 +10,4 @@ function layout({ children }: { children:ReactNode }) {
     );
 }
 
-export default layout
+export default layout;
