@@ -2,9 +2,12 @@ import Logo from "@/components/Logo";
 import React from "react";
 
 function Navbar() {
-  return <>
+  return ( 
+  <>
   
-  <DesktopNavbar /></>;
+  <DesktopNavbar />
+  </>
+  );
 }
 
 function DesktopNavbar() {
