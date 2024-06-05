@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { buttonVariants } from "./ui/button";
+import { UserButton } from "@clerk/nextjs";
 
 function Navbar() {
   return ( 
@@ -36,6 +37,10 @@ function DesktopNavbar() {
                             />
                         ))}
                     </div>
+                </div>
+                <div className="flex items-center gap-2">
+                    <ThemeSwitcherBtn />
+                    <UserButton afterSignOutUrl="/sign-in" />
                 </div>
             </nav>
         </div>
