@@ -4,6 +4,7 @@ import { link } from "fs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { buttonVariants } from "./ui/button";
 
 function Navbar() {
   return ( 
@@ -28,9 +29,9 @@ function DesktopNavbar() {
                     <div className="flex h-full">
                         {items.map(item => (
                             <NavbarItem
-                            key={item.label}
-                            link={item.link}
-                            label={item.label}
+                                key={item.label}
+                                link={item.link}
+                                label={item.label}
                             />
                         ))}
                     </div>
@@ -42,16 +43,27 @@ function DesktopNavbar() {
 
 function NavbarItem({link, label}: {
     link: string;
-    label: string
+    label: string;
 }) {
     const pathname = usePathname();
     const isActive = pathname === link;
 
     return (
         <div className="relative flex items-center">
-            <Link href={link}>{label}</Link>
+            <Link href={link} className={cn(
+                buttonVariants({variant: "ghost" }),
+                "w-full justify-start text-lg text-muted-foreground hover:text-foreground",
+                isActive && "text-foreground"
+            )}>
+                {label}
+            </Link>
+            {
+                isActive && (
+                    <div className="absolute -bottom-[2px] left-1/2 hidden h-[2px] w-[80%] -translate-x-1/2 rounded-xl bg-background md:block" />
+                )
+            }
         </div>
-    )
+    );
 }
 
 export default Navbar;
