@@ -49,8 +49,8 @@ function NavbarItem({link, label}: {
 
     return (
         <div className="relative flex items-center">
-            <Link href={link}>{label</Link>
-        </div>;
+            <Link href={link}>{label}</Link>
+        </div>
     )
 }
 
