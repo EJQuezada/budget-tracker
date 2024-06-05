@@ -1,6 +1,7 @@
 "use client";
 import Logo from "@/components/Logo";
 import { link } from "fs";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
@@ -47,7 +48,9 @@ function NavbarItem({link, label}: {
     const isActive = pathname === link;
 
     return (
-        <div className="relative flex items-center"></div>;
+        <div className="relative flex items-center">
+            <Link href={link}>{label</Link>
+        </div>;
     )
 }
 
