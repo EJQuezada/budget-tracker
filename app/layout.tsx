@@ -33,7 +33,7 @@ export default function RootLayout({
           <SignedIn>
             <UserButton />
           </SignedIn>
-          {children}
+          
           <Toaster richColors position="bottom-right" />
           <RootProviders>{children}</RootProviders>
         </body>
