@@ -40,7 +40,7 @@ function MobileNavbar() {
                     </SheetTrigger>
                 </Sheet>
             </nav>
-        </div>;
+        </div>
     )
 }
 
