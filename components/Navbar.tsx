@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { Button, buttonVariants } from "./ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { ThemeSwitcherBtn } from "./ThemeSwitcherBtn";
-import { Sheet, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Menu } from "lucide-react";
 
 function Navbar() {
@@ -38,6 +38,15 @@ function MobileNavbar() {
                             <Menu />
                         </Button>
                     </SheetTrigger>
+                    <SheetContent className="w-[400px] sm:w-[540px]"
+                    side="left">
+                       <Logo /> 
+                       <div className="flex flex-col gap-1 pt-4">
+                        {items.map(item => <NavbarItem
+                            key={item.label} />
+                        )}
+                       </div>
+                    </SheetContent>
                 </Sheet>
             </nav>
         </div>
