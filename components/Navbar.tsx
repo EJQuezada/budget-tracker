@@ -42,15 +42,19 @@ function MobileNavbar() {
                     side="left">
                        <Logo /> 
                        <div className="flex flex-col gap-1 pt-4">
-                        {items.map(item => <NavbarItem
-                            key={item.label} />
-                        )}
+                        {items.map((item) => (
+                            <NavbarItem
+                                key={item.label} 
+                                link={item.link}
+                                label={item.label}
+                            />
+                        ))}
                        </div>
                     </SheetContent>
                 </Sheet>
             </nav>
         </div>
-    )
+    );
 }
 
 function DesktopNavbar() {
