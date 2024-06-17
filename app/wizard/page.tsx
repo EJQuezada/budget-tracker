@@ -1,3 +1,4 @@
+import { CurrencyComboBox } from "@/components/CurrencyComboBox";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -33,7 +34,9 @@ async function page() {
                     Set your default currency for transactions
                 </CardDescription>
             </CardHeader>
-            <CardContent></CardContent>
+            <CardContent>
+                <CurrencyComboBox />
+            </CardContent>
         </Card>
         <Separator />
             <Button className="w-full">
