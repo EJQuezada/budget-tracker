@@ -1,4 +1,5 @@
 import { CurrencyComboBox } from "@/components/CurrencyComboBox";
+import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
