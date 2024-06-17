@@ -1,9 +1,9 @@
 "use client"
 
-import * as React from "react"
+import * as React from "react";
 
-import { useMediaQuery } from "@/hooks/use-media-query"
-import { Button } from "@/components/ui/button"
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -11,17 +11,17 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 import {
   Drawer,
   DrawerContent,
   DrawerTrigger,
-} from "@/components/ui/drawer"
+} from "@/components/ui/drawer";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 type Status = {
   value: string
@@ -56,7 +56,7 @@ export function CurrencyComboBox() {
   const isDesktop = useMediaQuery("(min-width: 768px)")
   const [selectedStatus, setSelectedStatus] = React.useState<Status | null>(
     null
-  )
+  );
 
   if (isDesktop) {
     return (
@@ -70,7 +70,7 @@ export function CurrencyComboBox() {
           <StatusList setOpen={setOpen} setSelectedStatus={setSelectedStatus} />
         </PopoverContent>
       </Popover>
-    )
+    );
   }
 
   return (
@@ -119,5 +119,5 @@ function StatusList({
         </CommandGroup>
       </CommandList>
     </Command>
-  )
+  );
 }
