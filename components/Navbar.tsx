@@ -44,9 +44,10 @@ function MobileNavbar() {
                        <div className="flex flex-col gap-1 pt-4">
                         {items.map((item) => (
                             <NavbarItem
-                                key={item.label} 
+                                key={item.label}
                                 link={item.link}
                                 label={item.label}
+                                onClick={() => setIsOpen(prev => !prev)}
                             />
                         ))}
                        </div>
@@ -89,9 +90,10 @@ function DesktopNavbar() {
     );
 }
 
-function NavbarItem({link, label}: {
+function NavbarItem({link, label, onClick}: {
     link: string;
     label: string;
+    onClick? : () => void;
 }) {
     const pathname = usePathname();
     const isActive = pathname === link;
@@ -102,7 +104,11 @@ function NavbarItem({link, label}: {
                 buttonVariants({variant: "ghost" }),
                 "w-full justify-start text-lg text-muted-foreground hover:text-foreground",
                 isActive && "text-foreground"
-            )}>
+            )}
+            onClick={() => {
+                if (onClick) onClick();
+            }}
+            >
                 {label}
             </Link>
             {
