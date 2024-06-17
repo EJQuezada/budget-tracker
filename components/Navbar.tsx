@@ -90,7 +90,11 @@ function DesktopNavbar() {
     );
 }
 
-function NavbarItem({link, label, onClick}: {
+function NavbarItem({
+    link, 
+    label, 
+    onClick,
+}: {
     link: string;
     label: string;
     onClick? : () => void;
