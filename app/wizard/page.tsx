@@ -40,7 +40,7 @@ async function page() {
             </CardContent>
         </Card>
         <Separator />
-            <Button className="w-full">
+            <Button className="w-full" asChild>
                 <Link href={"/"}>
                     I am done! Take me to the dashboard
                 </Link>
