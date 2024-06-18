@@ -23,7 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Currencies, Currency } from "@/lib/currencies";
-import { UpdateUserCurrency } from "@app/wizard/_actions/userSettings";
+//import { UpdateUserCurrency } from "@app/wizard/_actions/userSettings";
 
 export function CurrencyComboBox() {
   const [open, setOpen] = React.useState(false);
