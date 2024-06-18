@@ -44,7 +44,7 @@ export function CurrencyComboBox() {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0" align="start">
-          <OptionList setOpen={setOpen} setSelectedOption={setSelectedOption} />
+          <OptionList setOpen={setOpen} setSelectedOption={selectOption} />
         </PopoverContent>
       </Popover>
     );
@@ -62,7 +62,7 @@ export function CurrencyComboBox() {
       </DrawerTrigger>
       <DrawerContent>
         <div className="mt-4 border-t">
-          <OptionList setOpen={setOpen} setSelectedOption={setSelectedOption} />
+          <OptionList setOpen={setOpen} setSelectedOption={selectOption} />
         </div>
       </DrawerContent>
     </Drawer>
@@ -70,18 +70,12 @@ export function CurrencyComboBox() {
 }
 
 function OptionList({
+  setOpen,
+  setSelectedOption,
 }: {
   setOpen: (open: boolean) => void;
   setSelectedOption: (status: Currency | null) => void;
 }) {
-  function setSelectedOption(arg0: { value: string; label: string; locale: string; } | null) {
-    throw new Error("Function not implemented.");
-  }
-
-  function setOpen(arg0: boolean) {
-    throw new Error("Function not implemented.");
-  }
-
   //function setSelectedOption(arg0: { value: string; label: string; locale: string; } | null) {
   //  throw new Error("Function not implemented.");
   //}
