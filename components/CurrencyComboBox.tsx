@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as React from "react";
 
@@ -23,10 +23,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Currencies, Currency } from "@/lib/currencies";
+import { UpdateUserCurrency } from "@app/wizard/_actions/userSettings";
 
 export function CurrencyComboBox() {
-  const [open, setOpen] = React.useState(false)
-  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const [open, setOpen] = React.useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const [selectedOption, setSelectedOption] = React.useState<Currency | null>(
     null
   );
@@ -35,7 +36,10 @@ export function CurrencyComboBox() {
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="w-full justify-start">
+          <Button 
+            variant="outline" 
+            className="w-full justify-start"
+          >
             {selectedOption ? <>{selectedOption.label}</> : <>Set currency</>}
           </Button>
         </PopoverTrigger>
@@ -49,7 +53,10 @@ export function CurrencyComboBox() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="w-full justify-start">
+        <Button 
+          variant="outline" 
+          className="w-full justify-start"
+        >
           {selectedOption ? <>{selectedOption.label}</> : <>Set currency</>}
         </Button>
       </DrawerTrigger>
@@ -59,13 +66,13 @@ export function CurrencyComboBox() {
         </div>
       </DrawerContent>
     </Drawer>
-  )
+  );
 }
 
 function OptionList({
 }: {
-  setOpen: (open: boolean) => void
-  setSelectedOption: (status: Currency | null) => void
+  setOpen: (open: boolean) => void;
+  setSelectedOption: (status: Currency | null) => void;
 }) {
   function setSelectedOption(arg0: { value: string; label: string; locale: string; } | null) {
     throw new Error("Function not implemented.");
@@ -89,7 +96,7 @@ function OptionList({
                 setSelectedOption(
                   Currencies.find((priority) => priority.value === value) || null
                 );
-                setOpen(false)
+                setOpen(false);
               }}
             >
               {currency.label}
