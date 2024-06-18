@@ -82,6 +82,14 @@ function OptionList({
     throw new Error("Function not implemented.");
   }
 
+  //function setSelectedOption(arg0: { value: string; label: string; locale: string; } | null) {
+  //  throw new Error("Function not implemented.");
+  //}
+
+  //function setOpen(arg0: boolean) {
+  //  throw new Error("Function not implemented.");
+  //}
+
   return (
     <Command>
       <CommandInput placeholder="Filter currency..." />
