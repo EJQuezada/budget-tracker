@@ -23,6 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Currencies, Currency } from "@/lib/currencies";
+import { useQuery } from "@tanstack/react-query";
 //import { UpdateUserCurrency } from "@app/wizard/_actions/userSettings";
 
 export function CurrencyComboBox() {
@@ -31,6 +32,11 @@ export function CurrencyComboBox() {
   const [selectedOption, setSelectedOption] = React.useState<Currency | null>(
     null
   );
+
+  const userSettings = useQuery({
+    queryKey: ["userSettings"],
+    queryFn: () => fetch("/api/user-settings").then((res) => res.json()),
+  });
 
   if (isDesktop) {
     return (
@@ -76,13 +82,6 @@ function OptionList({
   setOpen: (open: boolean) => void;
   setSelectedOption: (status: Currency | null) => void;
 }) {
-  //function setSelectedOption(arg0: { value: string; label: string; locale: string; } | null) {
-  //  throw new Error("Function not implemented.");
-  //}
-
-  //function setOpen(arg0: boolean) {
-  //  throw new Error("Function not implemented.");
-  //}
 
   return (
     <Command>
