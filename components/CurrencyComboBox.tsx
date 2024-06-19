@@ -48,7 +48,8 @@ export function CurrencyComboBox() {
               variant="outline" 
               className="w-full justify-start"
             >
-              {selectedOption ? <>{selectedOption.label}</> : <>Set currency</>}
+              {selectedOption ? <>{selectedOption.label}</> 
+              : <>Set currency</>}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-[200px] p-0" align="start">
@@ -60,21 +61,23 @@ export function CurrencyComboBox() {
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button 
-          variant="outline" 
-          className="w-full justify-start"
-        >
-          {selectedOption ? <>{selectedOption.label}</> : <>Set currency</>}
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <div className="mt-4 border-t">
-          <OptionList setOpen={setOpen} setSelectedOption={setSelectedOption} />
-        </div>
-      </DrawerContent>
-    </Drawer>
+    <SkeletonWrapper isLoading={userSettings.isFetching}>
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>
+          <Button 
+            variant="outline" 
+            className="w-full justify-start"
+          >
+            {selectedOption ? <>{selectedOption.label}</> : <>Set currency</>}
+          </Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <div className="mt-4 border-t">
+            <OptionList setOpen={setOpen} setSelectedOption={setSelectedOption} />
+          </div>
+        </DrawerContent>
+      </Drawer>
+    </SkeletonWrapper>
   );
 }
 
