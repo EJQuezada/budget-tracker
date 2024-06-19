@@ -23,10 +23,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Currencies, Currency } from "@/lib/currencies";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import SkeletonWrapper from "./SkeletonWrapper";
 import { UserSettings } from "@prisma/client";
-//import { UpdateUserCurrency } from "@app/wizard/_actions/userSettings";
+import { UpdateUserCurrency } from "@/app/wizard/_actions/userSettings";
+
 
 export function CurrencyComboBox() {
   const [open, setOpen] = React.useState(false);
@@ -47,6 +48,16 @@ export function CurrencyComboBox() {
     );
     if (userCurrency) setSelectedOption(userCurrency);
   }, [userSettings.data]);
+
+  const mutation = useMutation({
+    mutationFn: UpdateUserCurrency
+  })
+
+  const selectOption = (value: Currency | null) => {
+    if (!value) {
+      
+    }
+  };
 
   if (isDesktop) {
     return (
