@@ -24,7 +24,7 @@ export async function UpdateUserCurrency(currency: string) {
         },
         data: {
             currency,
-        }
+        },
     });
 
     return userSettings;
