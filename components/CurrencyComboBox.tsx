@@ -66,7 +66,7 @@ export function CurrencyComboBox() {
       toast.error("Something went wrong", {
         id: "update-currency",
       });
-    }  
+    },  
   });
 
   const selectOption = React.useCallback(
