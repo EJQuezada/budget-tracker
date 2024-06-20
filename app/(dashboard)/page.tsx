@@ -19,7 +19,8 @@ async function page() {
     redirect("/wizard");
   }
 
-  return <div className="h-full bg-background">
+  return (
+  <div className="h-full bg-background">
     <div className="border-b bg-card">
       <div className="container flex flex-wrap items-center justify-between gap-6 py-8">
         <p className="text-3xl font-bold">
@@ -27,7 +28,8 @@ async function page() {
         </p>
       </div>
     </div>
-  </div>;
+  </div>
+  );
 }
 
 export default page;
