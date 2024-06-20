@@ -56,7 +56,16 @@ export function CurrencyComboBox() {
       toast.success(`Currency updated successfully 🎉`, {
         id: "update-currency",
       });
-    },  
+
+      setSelectedOption(
+        Currencies.find(c => c.value === data.currency) || null
+      );
+    },
+    onError: (e) => {
+      toast.error("Something went wrong", {
+        id: "update-currency",
+      });
+    }  
   });
 
   const selectOption = React.useCallback(
