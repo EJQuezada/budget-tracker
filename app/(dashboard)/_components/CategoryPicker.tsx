@@ -17,7 +17,7 @@ function CategoryPicker({ type }: Props) {
 
     const categoriesQuery = useQuery({
         queryKey: ["categories", type],
-        queryFn: () => fetch('/api/categories?type=${type}').then((res) =>res.json()),
+        queryFn: () => fetch(`/api/categories?type=${type}`).then((res) =>res.json()),
     });
 
     const selectedCategory = categoriesQuery.data?.find(
