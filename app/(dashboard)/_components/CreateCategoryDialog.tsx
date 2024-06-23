@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/categories";
@@ -61,6 +62,31 @@ function CreateCategoryDialog({ type }: Props) {
                             </FormControl>
                             <FormDescription>
                                 Transaction Description (optional)
+                            </FormDescription>
+                        </FormItem>
+                    )}
+                />
+
+                <FormField 
+                    control={form.control}
+                    name="icon"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Icon</FormLabel>
+                            <FormControl>
+                               <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button variant={"outline"}
+                                    className="h-[100px] w-full">
+                                        {form.watch("icon") ? (
+                                            <div>Selected icon</div>
+                                        ) : <div></div>}    
+                                    </Button>   
+                                </PopoverTrigger> 
+                               </Popover> 
+                            </FormControl>
+                            <FormDescription>
+                                This is how your category will appear in the application
                             </FormDescription>
                         </FormItem>
                     )}
