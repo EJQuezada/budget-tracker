@@ -8,6 +8,7 @@ import { Category } from "@prisma/client";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import CreateCategoryDialog from "./CreateCategoryDialog";
 interface Props {
     type: TransactionType;
 }
