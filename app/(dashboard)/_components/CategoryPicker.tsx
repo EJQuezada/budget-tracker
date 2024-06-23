@@ -44,6 +44,7 @@ function CategoryPicker({ type }: Props) {
                 e.preventDefault()
             }}>
                 <CommandInput placeholder="Search category..." />
+                <CreateCategoryDialog type={type} />
             </Command>
         </PopoverContent>
     </Popover>
