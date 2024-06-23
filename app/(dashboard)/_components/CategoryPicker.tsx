@@ -41,9 +41,11 @@ function CategoryPicker({ type }: Props) {
             </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
-            <Command onSubmit={e => {
-                e.preventDefault()
-            }}>
+            <Command 
+                onSubmit={e => {
+                    e.preventDefault()
+                }}
+            >
                 <CommandInput placeholder="Search category..." />
                 <CreateCategoryDialog type={type} />
             </Command>

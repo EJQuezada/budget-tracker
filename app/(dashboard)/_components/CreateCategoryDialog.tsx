@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Form } from "@/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/categories";
@@ -48,7 +49,23 @@ function CreateCategoryDialog({ type }: Props) {
             </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-            <form className="space-y-8"></form>
+            <form className="space-y-8">
+                <FormField 
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                                <Input defaultValue={""} {...field} />
+                            </FormControl>
+                            <FormDescription>
+                                Transaction Description (optional)
+                            </FormDescription>
+                        </FormItem>
+                    )}
+                />
+            </form>
         </Form>
     </DialogContent>
   </Dialog>;
