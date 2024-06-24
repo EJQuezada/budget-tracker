@@ -118,17 +118,18 @@ function CreateCategoryDialog({ type }: Props) {
                 />
             </form>
         </Form>
+    
+        <DialogFooter>
+            <DialogClose asChild>
+                <Button type="button" variant={"secondary"} onClick={() => {
+                form.reset();
+                }}
+                >
+                Cancel
+                </Button> 
+            </DialogClose>
+        </DialogFooter> {" "}
     </DialogContent>
-    <DialogFooter>
-        <DialogClose asChild>
-           <Button type="button" variant={"secondary"} onClick={() => {
-            form.reset();
-           }}
-           >
-            Cancel
-            </Button> 
-        </DialogClose>
-    </DialogFooter>
   </Dialog>;
 }
 
