@@ -100,7 +100,9 @@ function CreateCategoryDialog({ type }: Props) {
                                         )}    
                                     </Button>   
                                 </PopoverTrigger> 
-                                <PopoverContent className="w-full"></PopoverContent>
+                                <PopoverContent className="w-full">
+                                    <Picker data={data} />
+                                </PopoverContent>
                                </Popover> 
                             </FormControl>
                             <FormDescription>
