@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/categories";
@@ -12,6 +12,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleOff, PlusSquare } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 
 interface Props {
     type: TransactionType;
@@ -80,13 +82,25 @@ function CreateCategoryDialog({ type }: Props) {
                                     className="h-[100px] w-full"
                                     >
                                         {form.watch("icon") ? (
-                                            <div>Selected icon</div>
+                                            <div className="flex flex-col items-center gap-2">
+                                                <span className="text-5xl" role="img">
+                                                    {field.value}    
+                                                </span>   
+                                                <p className="text-xs text-muted-foreground">
+                                                    Click to Change
+                                                </p>
+                                            </div>
                                         ) : (
                                             <div className="flex flex-col items-center gap-2">
-                                                <CircleOff className="h-[48px] w-[48px]" />                                           </div>
+                                                <CircleOff className="h-[48px] w-[48px]" />   
+                                                <p className="text-xs text-muted-foreground">
+                                                    Click to Select
+                                                </p>
+                                            </div>
                                         )}    
                                     </Button>   
                                 </PopoverTrigger> 
+                                <PopoverContent className="w-full"></PopoverContent>
                                </Popover> 
                             </FormControl>
                             <FormDescription>
