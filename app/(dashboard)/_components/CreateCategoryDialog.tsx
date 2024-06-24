@@ -9,7 +9,7 @@ import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/categories";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PlusSquare } from "lucide-react";
+import { CircleOff, PlusSquare } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -77,10 +77,14 @@ function CreateCategoryDialog({ type }: Props) {
                                <Popover>
                                 <PopoverTrigger asChild>
                                     <Button variant={"outline"}
-                                    className="h-[100px] w-full">
+                                    className="h-[100px] w-full"
+                                    >
                                         {form.watch("icon") ? (
                                             <div>Selected icon</div>
-                                        ) : <div></div>}    
+                                        ) : (
+                                            <div className="flex flex-col items-center gap-2">
+                                                <CircleOff className="h-[48px] w-[48px]" />                                           </div>
+                                        )}    
                                     </Button>   
                                 </PopoverTrigger> 
                                </Popover> 
