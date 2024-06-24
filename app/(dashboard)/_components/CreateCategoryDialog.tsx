@@ -103,7 +103,7 @@ function CreateCategoryDialog({ type }: Props) {
                                 <PopoverContent className="w-full">
                                     <Picker 
                                         data={data} 
-                                        onEmojiSelect={(emoji) => {
+                                        onEmojiSelect={(emoji: {native: string }) => {
                                             field.onChange(emoji.native);
                                         }}
                                     />
