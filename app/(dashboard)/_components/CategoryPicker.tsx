@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Command, CommandInput } from "@/components/ui/command";
+import { Command, CommandEmpty, CommandInput } from "@/components/ui/command";
 import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import { TransactionType } from "@/lib/types";
 import { Category } from "@prisma/client";
@@ -48,6 +48,12 @@ function CategoryPicker({ type }: Props) {
             >
                 <CommandInput placeholder="Search category..." />
                 <CreateCategoryDialog type={type} />
+                <CommandEmpty>
+                    <p>Category not found</p>
+                    <p className="text-xs text-muted-foreground">
+                        Tip: Create a new category
+                    </p>
+                </CommandEmpty>
             </Command>
         </PopoverContent>
     </Popover>
