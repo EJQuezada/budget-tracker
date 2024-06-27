@@ -9,7 +9,7 @@ import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/categories";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CircleOff, PlusSquare } from "lucide-react";
+import { CircleOff, Loader2, PlusSquare } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import Picker from "@emoji-mart/react";
@@ -91,7 +91,8 @@ function CreateCategoryDialog({ type }: Props) {
             </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-            <form className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)}
+             className="space-y-8">
                 <FormField 
                     control={form.control}
                     name="name"
@@ -167,7 +168,10 @@ function CreateCategoryDialog({ type }: Props) {
                 Cancel
                 </Button> 
             </DialogClose>
-            <Button>Save</Button>
+            <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}>
+                {!isPending && "Create"}
+                {isPending && <Loader2 className="animate-spin" />}
+            </Button>
         </DialogFooter> 
     </DialogContent>
   </Dialog>;
