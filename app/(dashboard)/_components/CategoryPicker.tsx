@@ -62,7 +62,7 @@ function CategoryPicker({ type }: Props) {
                             categoriesQuery.data.map((category: Category) => (
                                 <CommandItem 
                                     key={category.name} 
-                                    onSelect={currentValue => {
+                                    onSelect={() => {
                                         setValue(category.name);
                                         setOpen(prev => !prev);
                                     }}
