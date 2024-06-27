@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Command, CommandEmpty, CommandInput } from "@/components/ui/command";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import { TransactionType } from "@/lib/types";
 import { Category } from "@prisma/client";
@@ -54,6 +54,23 @@ function CategoryPicker({ type }: Props) {
                         Tip: Create a new category
                     </p>
                 </CommandEmpty>
+                <CommandGroup>
+                    <CommandList>
+                        {categoriesQuery.data && 
+                            categoriesQuery.data.map((category: Category) => (
+                                <CommandItem 
+                                    key={category.name} 
+                                    onSelect={currentValue => {
+                                        setValue(currentValue);
+                                        setOpen(prev => !prev);
+                                    }}
+                                >
+                                    <CategoryRow category={category} />
+                                </CommandItem>
+                                ))
+                            }
+                    </CommandList>
+                </CommandGroup>
             </Command>
         </PopoverContent>
     </Popover>
