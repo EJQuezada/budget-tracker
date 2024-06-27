@@ -9,7 +9,7 @@ import { PopoverContent } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import CreateCategoryDialog from "@/app/(dashboard)/_components/CreateCategoryDialog";
-import { Check } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 interface Props {
     type: TransactionType;
@@ -40,6 +40,7 @@ function CategoryPicker({ type }: Props) {
                 ) : (
                     "Select category"
                 )} 
+                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
