@@ -8,7 +8,7 @@ import { Category } from "@prisma/client";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import CreateCategoryDialog from "./CreateCategoryDialog";
+import CreateCategoryDialog from "@/app/(dashboard)/_components/CreateCategoryDialog";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 interface Props {
