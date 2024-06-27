@@ -9,6 +9,8 @@ import { PopoverContent } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import CreateCategoryDialog from "./CreateCategoryDialog";
+import { Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 interface Props {
     type: TransactionType;
 }
@@ -66,9 +68,14 @@ function CategoryPicker({ type }: Props) {
                                     }}
                                 >
                                     <CategoryRow category={category} />
+                                    <Check 
+                                        className={cn(
+                                            "mr-2 w-4 h-4 opacity-0",
+                                            value === category.name && "opacity-100"
+                                        )} 
+                                    />
                                 </CommandItem>
-                                ))
-                            }
+                            ))}
                     </CommandList>
                 </CommandGroup>
             </Command>
