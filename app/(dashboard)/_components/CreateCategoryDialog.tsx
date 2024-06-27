@@ -10,10 +10,14 @@ import { cn } from "@/lib/utils";
 import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/categories";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleOff, PlusSquare } from "lucide-react";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { CreateCategory } from "../_actions/categories";
+import { Category } from "@prisma/client";
+import { toast } from "sonner";
 
 interface Props {
     type: TransactionType;
@@ -27,6 +31,41 @@ function CreateCategoryDialog({ type }: Props) {
             type,
         },
     });
+
+    const queryClient = useQueryClient();
+
+    const { mutate, isPending } = useMutation({
+        mutationFn: CreateCategory,
+        onSuccess: async (data: Category) => {
+            form.reset({
+                name: "",
+                icon: "",
+                type,
+            });
+
+            toast.success(`Category ${data.name} created successfully 🎉`, {
+                id: "create-category",
+            });
+
+            await queryClient.invalidateQueries({
+                queryKey: ["categories"],
+            });
+
+            setOpen((prev) => !prev);
+        },
+        onError: () => {
+            toast.error("Something went wrong", {
+                id: "create-category",
+            });
+        },
+    });
+
+    const onSubmit = useCallback((values: CreateCategorySchemaType) => {
+        toast.loading("Creating category...", {
+            id: "create-category",
+        });
+        mutate(values);
+    }, [mutate]);
 
   return <Dialog open={open} onOpenChange={setOpen}>
     <DialogTrigger asChild>
