@@ -63,7 +63,7 @@ function CategoryPicker({ type }: Props) {
                                 <CommandItem 
                                     key={category.name} 
                                     onSelect={currentValue => {
-                                        setValue(currentValue);
+                                        setValue(category.name);
                                         setOpen(prev => !prev);
                                     }}
                                 >
