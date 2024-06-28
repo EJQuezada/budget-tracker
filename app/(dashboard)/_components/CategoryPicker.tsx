@@ -7,7 +7,7 @@ import { TransactionType } from "@/lib/types";
 import { Category } from "@prisma/client";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useCallback } from "react";
 import CreateCategoryDialog from "@/app/(dashboard)/_components/CreateCategoryDialog";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,7 +24,14 @@ function CategoryPicker({ type }: Props) {
     });
 
     const selectedCategory = categoriesQuery.data?.find(
-        (category: Category) => CategoryPicker.name === value);
+        (category: Category) => CategoryPicker.name === value
+    );
+
+    const successCallback = useCallback((category: Category) => {
+        setValue(category.name);
+        setOpen((prev) => !prev);
+    }, [setValue, setOpen]
+    );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -50,7 +57,9 @@ function CategoryPicker({ type }: Props) {
                 }}
             >
                 <CommandInput placeholder="Search category..." />
-                <CreateCategoryDialog type={type} onSuccessCallback={/>
+                <CreateCategoryDialog type={type} onSuccessCallback={
+                    onSuccessCallback={successCallback}
+                />
                 <CommandEmpty>
                     <p>Category not found</p>
                     <p className="text-xs text-muted-foreground">
