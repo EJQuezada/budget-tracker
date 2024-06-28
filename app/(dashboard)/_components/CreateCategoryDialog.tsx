@@ -21,9 +21,10 @@ import { toast } from "sonner";
 
 interface Props {
     type: TransactionType;
+    SuccessCallback: (Category:Category) => void;
 }
 
-function CreateCategoryDialog({ type }: Props) {
+function CreateCategoryDialog({ type, SuccessCallback }: Props) {
     const [open, setOpen] = useState(false);
     const form = useForm<CreateCategorySchemaType>({
         resolver: zodResolver(CreateCategorySchema),
