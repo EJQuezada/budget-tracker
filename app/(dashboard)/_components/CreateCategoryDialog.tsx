@@ -103,10 +103,10 @@ function CreateCategoryDialog({ type, successCallback }: Props) {
                         <FormItem>
                             <FormLabel>Name</FormLabel>
                             <FormControl>
-                                <Input defaultValue={""} {...field} />
+                                <Input placeholder="Category" {...field} />
                             </FormControl>
                             <FormDescription>
-                                Transaction Description (optional)
+                                This is how your category will appear in the app 
                             </FormDescription>
                         </FormItem>
                     )}
