@@ -17,6 +17,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import CategoryPicker from "./CategoryPicker";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 
 function CreateTransactionDialog({ trigger, type }: Props) {
     const form = useForm<CreateTransactionSchemaType>({
@@ -98,6 +100,31 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                                     </FormControl>
                                     <FormDescription>
                                         Select a category for this transaction
+                                    </FormDescription>
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField 
+                            control={form.control}
+                            name="date"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Transaction date</FormLabel>
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <FormControl>
+                                                <Button variant={"outline"} className={
+                                                    cn(
+                                                        "w[200px] pl-3 text-left font-normal",
+                                                        !field.value && "text-muted-foreground"
+                                                    )
+                                                }
+                                            </FormControl>
+                                        </PopoverTrigger>
+                                    </Popover>
+                                    <FormDescription>
+                                        Select a date for this transaction
                                     </FormDescription>
                                 </FormItem>
                             )}
