@@ -85,7 +85,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                             </FormItem>
                         )}
                     />
-
+                    Transaction: {form.watch("category")}
                     <div className="flex items-center justify-between gap-2">
                         <FormField 
                             control={form.control}
