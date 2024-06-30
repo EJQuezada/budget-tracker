@@ -47,6 +47,7 @@ export async function CreateTransaction(form: CreateTransactionSchemaType)
                 categoryIcon: categoryRow.icon,
             },
         }),
+        
         // Update month aggregates table
         prisma.monthHistory.upsert({
             where: {
