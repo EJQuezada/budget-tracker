@@ -135,10 +135,13 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                             control={form.control}
                             name="category"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem className="flex flex-col">
                                     <FormLabel>Category</FormLabel>
                                     <FormControl>
-                                        <CategoryPicker type={type} onChange={handleCategoryChange} />
+                                        <CategoryPicker 
+                                            type={type} 
+                                            onChange={handleCategoryChange} 
+                                        />
                                     </FormControl>
                                     <FormDescription>
                                         Select a category for this transaction
@@ -151,7 +154,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                             control={form.control}
                             name="date"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem className="flex flex-col">
                                     <FormLabel>Transaction date</FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
