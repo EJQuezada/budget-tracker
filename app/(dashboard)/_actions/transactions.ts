@@ -29,7 +29,7 @@ export async function CreateTransaction(form: CreateTransactionSchemaType)
         throw new Error("category not found");
     }
 
-    // NOTE: Do not create confusion between $transaction (prisma) and prisma transaction (table)
+    // NOTE: Do not create confusion between $transaction (prisma) and prisma.transaction (table)
 
     await prisma.$transaction([
         // Create user transaction
