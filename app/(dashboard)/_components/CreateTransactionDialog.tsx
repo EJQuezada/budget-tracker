@@ -4,7 +4,7 @@ import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogT
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CreateTransactionSchema, CreateTransactionSchemaType } from "@/schema/transaction";
-import { ReactNode, useCallback } from "react";
+import { ReactNode, useCallback, useState } from "react";
 
 interface Props {
     trigger: ReactNode;
@@ -22,6 +22,10 @@ import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { CreateTransaction } from "../_actions/transactions";
+import { toast } from "sonner";
+import { DateToUTCDate } from "@/lib/helpers";
 
 function CreateTransactionDialog({ trigger, type }: Props) {
     const form = useForm<CreateTransactionSchemaType>({
@@ -32,6 +36,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
         },
     });
 
+    const [open, setOpen] = useState(false);
     const handleCategoryChange = useCallback(
         (value: string) => {
             form.setValue("category", value);
@@ -39,8 +44,42 @@ function CreateTransactionDialog({ trigger, type }: Props) {
         [form]
     );
 
+    const queryClient = useQueryClient();
+
+    const {mutate, isPending} = useMutation({
+        mutationFn: CreateTransaction,
+        onSuccess: () => {
+            toast.success("Transaction created successfully 🎉", {
+                id: "create-transaction",
+            });
+            
+            form.reset({
+                type,
+                description: "",
+                amount: 0,
+                date: new Date(),
+                category: undefined,
+            });
+            
+            // after creating a transaction, we need to invalidate the overview query which wll refetch data in the homepage
+            queryClient.invalidateQueries({
+                queryKey: ["overview"],
+            });
+
+            setOpen((prev) => !prev);
+        },
+    });
+
+    const onSubmit = useCallback((values: CreateTransactionSchemaType) => {
+        toast.loading("Creating transaction...", {id:"create-transaction" });
+        mutate({
+            ...values,
+            date: DateToUTCDate(values.date),
+        });
+    }, [mutate]);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>{trigger}</DialogTrigger>
         <DialogContent>
             <DialogHeader>
@@ -58,7 +97,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                 </DialogTitle>
             </DialogHeader>
             <Form {...form}>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField 
                         control={form.control}
                         name="description"
