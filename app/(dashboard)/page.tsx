@@ -3,7 +3,8 @@ import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
-import CreateTransactionDialog from "./_components/CreateTransactionDialog";
+import CreateTransactionDialog from "@/app/(dashboard)/_components/Overview";
+import Overview from "./_components/Overview";
 
 async function page() {
   const user = await currentUser();
