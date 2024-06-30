@@ -54,6 +54,7 @@ async function page() {
         </div>
       </div>
     </div>
+    <Overview userSettings={userSettings} />
   </div>
   );
 }
