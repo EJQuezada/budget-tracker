@@ -24,7 +24,7 @@ function StatsCards({ from, to, userSettings }: Props) {
     }); 
 
     const formatter = useMemo(() => {
-        return GetFormatterForCurrency(userSettings.currency)
+        return GetFormatterForCurrency(userSettings.currency);
     }, [userSettings.currency]);
 
     const income = statsQuery.data?.income || 0;
