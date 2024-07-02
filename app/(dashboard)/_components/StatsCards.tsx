@@ -25,7 +25,7 @@ function StatsCards({ from, to, userSettings }: Props) {
         return GetFormatterForCurrency(userSettings.currency)
     }, [userSettings.currency]);
 
-    const income = statsQuery.data?.income 
+    const income = statsQuery.data?.income || 0;
 
   return <div>StatsCards</div>;
 }
