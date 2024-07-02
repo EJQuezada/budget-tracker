@@ -1,5 +1,6 @@
 "use client";
 
+import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { UserSettings } from "@prisma/client";
 import { startOfMonth } from "date-fns";
 import React, { useState } from "react";
@@ -10,7 +11,14 @@ function Overview({ userSettings }: { userSettings: UserSettings }) {
     to: new Date(),
   });
 
-  return <div>Overview</div>;
+  return <>
+    <div className="container flex flex-wrap items-end justify-between gap-2 py-6">
+        <h2 className="text-3xl font-bold">Overview</h2>
+        <div className="flex items-center gap-3">
+            <DateRangePicker />
+        </div>
+    </div>
+</>;
 }
 
 export default Overview;
