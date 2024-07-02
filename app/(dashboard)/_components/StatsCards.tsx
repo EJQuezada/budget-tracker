@@ -1,7 +1,7 @@
 "use client";
 
 import { GetBalanceStatsResponseType } from "@/app/api/stats/balance/route";
-import { DateToUTCDate } from "@/lib/helpers";
+import { DateToUTCDate, GetFormatterForCurrency } from "@/lib/helpers";
 import { UserSettings } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo } from "react";
@@ -24,6 +24,8 @@ function StatsCards({ from, to, userSettings }: Props) {
     const formatter = useMemo(() => {
         return GetFormatterForCurrency(userSettings.currency)
     }, [userSettings.currency]);
+
+    const income = statsQuery.data?.income 
 
   return <div>StatsCards</div>;
 }
