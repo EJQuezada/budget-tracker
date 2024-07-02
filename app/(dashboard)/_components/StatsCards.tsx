@@ -4,7 +4,7 @@ import { GetBalanceStatsResponseType } from "@/app/api/stats/balance/route";
 import { DateToUTCDate } from "@/lib/helpers";
 import { UserSettings } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useMemo } from "react";
 
 interface Props {
     from: Date;
@@ -20,7 +20,11 @@ function StatsCards({ from, to, userSettings }: Props) {
             `/api/stats/balance?from=${DateToUTCDate(from)}& to=${DateToUTCDate(to)}`
         ).then((res) => res.json()),
     }); 
-    
+
+    const formatter = useMemo(() => {
+        return GetFormatterForCurrency(userSettings.currency)
+    }, [userSettings.currency]);
+
   return <div>StatsCards</div>;
 }
 
