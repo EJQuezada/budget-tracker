@@ -218,7 +218,7 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
       }
       setRangeCompare(rangeCompare)
     }
-  }
+  };
 
   const checkPreset = (): void => {
     for (const preset of PRESETS) {
@@ -228,25 +228,25 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
       normalizedRangeFrom.setHours(0, 0, 0, 0);
       const normalizedPresetFrom = new Date(
         presetRange.from.setHours(0, 0, 0, 0)
-      )
+      );
 
       const normalizedRangeTo = new Date(range.to ?? 0);
       normalizedRangeTo.setHours(0, 0, 0, 0);
       const normalizedPresetTo = new Date(
         presetRange.to?.setHours(0, 0, 0, 0) ?? 0
-      )
+      );
 
       if (
         normalizedRangeFrom.getTime() === normalizedPresetFrom.getTime() &&
         normalizedRangeTo.getTime() === normalizedPresetTo.getTime()
       ) {
-        setSelectedPreset(preset.name)
-        return
+        setSelectedPreset(preset.name);
+        return;
       }
     }
 
-    setSelectedPreset(undefined)
-  }
+    setSelectedPreset(undefined);
+  };
 
   const resetValues = (): void => {
     setRange({
