@@ -9,7 +9,7 @@ export async function GET(request:Request) {
         redirect("/sign-in");
     }
 
-    const {searchParams} = new URL(request.url);
+    const { searchParams } = new URL(request.url);
     const from = searchParams.get("from");
     const to = searchParams.get("to");
 
@@ -52,5 +52,5 @@ async function getBalanceStats(userId: string, from: Date, to: Date){
     return {
         expense: totals.find((t) => t.type === "expense")?._sum.amount || 0,
         income: totals.find((t) => t.type === "income")?._sum.amount || 0,
-    }
+    };
 }
