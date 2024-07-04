@@ -1,4 +1,4 @@
-import { Currencies } from "./currencies";
+import { Currencies } from "@/lib/currencies";
 
 export function DateToUTCDate(date: Date) {
     return new Date(
