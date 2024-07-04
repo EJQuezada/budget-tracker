@@ -1,12 +1,7 @@
 import React from "react";
 
 function loading() {
-  return (
-    //<div>
-    //  loading
-    //</div>
-    null
-  )
+  return null;
 }
 
 export default loading;
