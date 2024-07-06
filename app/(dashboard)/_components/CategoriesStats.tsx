@@ -59,7 +59,9 @@ function CategoriesCard({data, type, formatter}: {
     return (
         <Card className="h-80 w-full col-span-6">
             <CardHeader>
-                <CardTitle className="grid grid-flow-row justify-between gap-2 text-muted-foreground md:grid-flow-col"></CardTitle>
+                <CardTitle className="grid grid-flow-row justify-between gap-2 text-muted-foreground md:grid-flow-col">
+                    {type === "income" ? "Incomes" : "Expenses"} by category 
+                </CardTitle>
             </CardHeader>
 
             <div className="flex items-center justify-between gap-2">
@@ -87,6 +89,9 @@ function CategoriesCard({data, type, formatter}: {
                                         <div className="flex items-center justify-between">
                                             <span className="flex items-center text-gray-400">
                                                 {item.categoryIcon} {item.category}
+                                                <span className="ml-2 text-xs text-muted-foreground">
+                                                    ({percentage.toFixed(0)}%)
+                                                </span>
                                             </span>
                                         </div>
 
