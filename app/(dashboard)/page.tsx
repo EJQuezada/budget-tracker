@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import History from "@/app/(dashboard)/_components/History";
 import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
