@@ -1,22 +1,36 @@
 "use client";
 
-import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { 
+    Dialog, 
+    DialogClose, 
+    DialogContent, 
+    DialogFooter, 
+    DialogHeader, 
+    DialogTitle, 
+    DialogTrigger 
+} from "@/components/ui/dialog";
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { CreateTransactionSchema, CreateTransactionSchemaType } from "@/schema/transaction";
+import { 
+    CreateTransactionSchema, 
+    CreateTransactionSchemaType, 
+} from "@/schema/transaction";
 import { ReactNode, useCallback, useState } from "react";
-
-interface Props {
-    trigger: ReactNode;
-    type: TransactionType;
-}
 
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { 
+    Form, 
+    FormControl, 
+    FormDescription, 
+    FormField, 
+    FormItem, 
+    FormLabel, 
+    FormMessage, 
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import CategoryPicker from "./CategoryPicker";
+import CategoryPicker from "@/app/(dashboard)/_components/CategoryPicker";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
@@ -26,6 +40,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CreateTransaction } from "../_actions/transactions";
 import { toast } from "sonner";
 import { DateToUTCDate } from "@/lib/helpers";
+
+interface Props {
+    trigger: ReactNode;
+    type: TransactionType;
+}
 
 function CreateTransactionDialog({ trigger, type }: Props) {
     const form = useForm<CreateTransactionSchemaType>({
