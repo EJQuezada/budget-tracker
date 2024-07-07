@@ -35,7 +35,7 @@ export type GetBalanceStatsResponseType = Awaited<
 >;
 
 async function getBalanceStats(userId: string, from: Date, to: Date) {
-    const totals = await prisma.$transaction.groupBy({
+    const totals = await prisma.transaction.groupBy({
         by: ["type"],
         where: {
             userId,
