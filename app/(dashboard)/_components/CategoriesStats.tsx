@@ -81,7 +81,8 @@ function CategoriesCard({
                     <div className="flex h-60 w-full flex-col items-center justify-center">
                         No data for the selected period
                         <p className="text-sm text-muted-foreground">
-                            Try selecting a different period or try adding new {type ==="income" ? "incomes" : "expenses"}
+                            Try selecting a different period or try adding new{" "}
+                            {type ==="income" ? "incomes" : "expenses"}
                         </p>
                     </div>
                 )}
