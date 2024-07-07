@@ -6,6 +6,7 @@ import { GetFormatterForCurrency } from "@/lib/helpers";
 import { Period, Timeframe } from "@/lib/types";
 import { UserSettings } from "@prisma/client";
 import React, { useMemo, useState } from "react";
+import HistoryPeriodSelector from "@/app/(dashboard)/_components/HistoryPeriodSelector";
 
 function History({userSettings}:{userSettings: UserSettings }) {
   const [timeframe, setTimeFrame] = useState<Timeframe>("month");
