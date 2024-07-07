@@ -93,13 +93,17 @@ function CreateTransactionDialog({ trigger, type }: Props) {
         },
     });
 
-    const onSubmit = useCallback((values: CreateTransactionSchemaType) => {
-        toast.loading("Creating transaction...", {id:"create-transaction" });
-        mutate({
-            ...values,
-            date: DateToUTCDate(values.date),
-        });
-    }, [mutate]);
+    const onSubmit = useCallback(
+        (values: CreateTransactionSchemaType) => {
+            toast.loading("Creating transaction...", {id: "create-transaction" });
+
+            mutate({
+                ...values,
+                date: DateToUTCDate(values.date),
+            });
+        }, 
+        [mutate]
+    );
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -107,7 +111,7 @@ function CreateTransactionDialog({ trigger, type }: Props) {
         <DialogContent>
             <DialogHeader>
                 <DialogTitle>
-                    Create a new 
+                    Create a new {" "}
                     <span 
                         className={cn(
                             "m-1",
@@ -182,12 +186,13 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                                     <Popover>
                                         <PopoverTrigger asChild>
                                             <FormControl>
-                                                <Button variant={"outline"} className={
-                                                    cn(
+                                                <Button 
+                                                    variant={"outline"} 
+                                                    className={cn(
                                                         "w[200px] pl-3 text-left font-normal",
                                                         !field.value && "text-muted-foreground"
-                                                    )
-                                                }>
+                                                    )}
+                                                >
                                                     {field.value ? (
                                                         format(field.value, "PPP")
                                                     ) : (
@@ -220,19 +225,22 @@ function CreateTransactionDialog({ trigger, type }: Props) {
                 </form>
             </Form>
             <DialogFooter>
-            <DialogClose asChild>
-                <Button type="button" variant={"secondary"} onClick={() => {
-                form.reset();
-                }}
-                >
-                Cancel
-                </Button> 
-            </DialogClose>
-            <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}>
-                {!isPending && "Create"}
-                {isPending && <Loader2 className="animate-spin" />}
-            </Button>
-        </DialogFooter> 
+                <DialogClose asChild>
+                    <Button 
+                        type="button" 
+                        variant={"secondary"} 
+                        onClick={() => {
+                            form.reset();
+                        }}
+                    >
+                        Cancel
+                    </Button> 
+                </DialogClose>
+                <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}>
+                    {!isPending && "Create"}
+                    {isPending && <Loader2 className="animate-spin" />}
+                </Button>
+            </DialogFooter> 
         </DialogContent>
     </Dialog>
   );
