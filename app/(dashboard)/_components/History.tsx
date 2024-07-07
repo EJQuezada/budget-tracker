@@ -1,8 +1,10 @@
 "use client";
 
+import { UserSettings } from "@prisma/client";
 import React from "react";
 
-function History() {
+function History({userSettings}:{userSettings: UserSettings }) {
+  const [timeframe]  
   return <div>History</div>;
 }
 
