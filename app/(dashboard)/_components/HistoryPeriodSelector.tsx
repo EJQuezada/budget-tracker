@@ -76,11 +76,11 @@ function YearSelector({
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        {years.map(year => {
+        {years.map((year) => (
           <SelectItem key={year} value={year.toString()}>
             {year}
           </SelectItem>
-        })}
+        ))}
       </SelectContent>
     </Select>
   );
