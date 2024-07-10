@@ -12,7 +12,8 @@ export async function GET(request: Request) {
     return Response.json(periods);
 }
 
-export type GetHistoryPeriodsResponseType = Awaited<ReturnType<typeof getHistoryPeriods>
+export type GetHistoryPeriodsResponseType = Awaited<
+    ReturnType<typeof getHistoryPeriods>
 >;
 
 async function getHistoryPeriods(userId: string) {
@@ -31,7 +32,7 @@ async function getHistoryPeriods(userId: string) {
         ],
     });
 
-    const years = result.map(el => el.year);
+    const years = result.map((el) => el.year);
     if (years.length === 0) {
         //Return the current year
         return [new Date().getFullYear()];
