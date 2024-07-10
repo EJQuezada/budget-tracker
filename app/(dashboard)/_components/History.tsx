@@ -5,11 +5,13 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { GetFormatterForCurrency } from "@/lib/helpers";
 import { Period, Timeframe } from "@/lib/types";
 import { UserSettings } from "@prisma/client";
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
+import CountUp from "react-countup/build/CountUp";
 import HistoryPeriodSelector from "@/app/(dashboard)/_components/HistoryPeriodSelector";
 
-function History({userSettings}:{userSettings: UserSettings }) {
-  const [timeframe, setTimeFrame] = useState<Timeframe>("month");
+function History({userSettings}: {userSettings: UserSettings }) {
+  const [timeframe, setTimeframe] = useState<Timeframe>("month");
   const [period, setPeriod] = useState<Period>({
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
