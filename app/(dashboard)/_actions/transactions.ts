@@ -49,7 +49,7 @@ export async function CreateTransaction(form: CreateTransactionSchemaType)
         }),
 
         // Update month aggregates table
-        prisma.monthHistory.upsert({
+        prisma.MonthHistory.upsert({
             where: {
                day_month_year_userId: {
                 userId: user.id,
