@@ -228,7 +228,11 @@ function CustomTooltip({ active, payload, formatter }: any) {
 }
 
 function TooltipRow({
-    label, value, bgColor, textColor, formatter 
+    label, 
+    value, 
+    bgColor, 
+    textColor, 
+    formatter, 
 }: {
     label: string;
     textColor: string;
@@ -236,6 +240,12 @@ function TooltipRow({
     value: number; 
     formatter: Intl.NumberFormat;
 }){
+
+    const formattingFn = useCallback(
+        (value: number) => {
+            return formatter.format(value);
+        }, [formatter]
+    );
     return (
         <div className="flex items-center gap-2">
             <div className={cn("h-4 w-4 rounded-full", bgColor)} />
@@ -247,7 +257,7 @@ function TooltipRow({
                         preserveValue
                         end={value}
                         decimals={0}
-                        formattingFn={(value) => formatter.format(value)}
+                        formattingFn={formattingFn}
                         className="text-sm"
                     />
                 </div>
