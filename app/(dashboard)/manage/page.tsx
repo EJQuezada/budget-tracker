@@ -68,6 +68,10 @@ function CategoryList({type}:{ type: TransactionType }) {
                                 <TrendingUp className="h-12 w-12 items-center rounded-lg bg-emerald-400/10 p-2 text-emerald-500" />
                             )}
                         </div>
+
+                        <div>
+                            {type === "income" ? "Incomes" : "Expenses"} categories
+                        </div>
                     </CardTitle>
                 </CardHeader>
             </Card>
