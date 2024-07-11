@@ -9,6 +9,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import CountUp from "react-countup/build/CountUp";
 import HistoryPeriodSelector from "@/app/(dashboard)/_components/HistoryPeriodSelector";
+import { useQuery } from "@tanstack/react-query";
 
 function History({userSettings}: {userSettings: UserSettings }) {
   const [timeframe, setTimeframe] = useState<Timeframe>("month");
@@ -21,6 +22,15 @@ function History({userSettings}: {userSettings: UserSettings }) {
     return GetFormatterForCurrency(userSettings.currency);
   }, [userSettings.currency]);
 
+  const historyDataQuery = useQuery({
+    queryKey: ["overview", "history", timeframe, period],
+    queryFn: () => fetch(
+        `/api/history-data?timeframe=${timeframe}&year=${period.year}&month=${period.month}`
+    ).then((res) => res.json()),
+  });
+
+  const dataAvailable = historyDataQuery.data && historyDataQuery.data.length > 0;
+  
   return (
     <div className="container">
         <h2 className="mt-12 text-3xl font-bold">History</h2>
