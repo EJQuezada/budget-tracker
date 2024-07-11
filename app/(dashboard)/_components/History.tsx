@@ -202,3 +202,19 @@ function CustomTooltip({ active, payload, formatter }: any) {
         <TooltipRow formatter={formatter} label="Expense" value={expense} bgColor="bg-red-500" textColor="text-red-500" />
     </div>;
 }
+
+function TooltipRow({
+    label, value, bgColor, textColor, formatter 
+}: {
+    label: string;
+    textColor: string;
+    bgColor: string;
+    value: number; 
+    formatter: Intl.NumberFormat;
+}){
+    return (
+        <div className="flex items-center gap-2">
+            <div className={cn("h-4 w-4 rounded-full", bgColor)} />
+        </div>
+    );
+}
