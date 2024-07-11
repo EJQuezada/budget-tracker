@@ -169,6 +169,9 @@ function History({userSettings}: {userSettings: UserSettings }) {
                                     radius={4} 
                                     className="cursor-pointer" 
                                 />
+                                <Tooltip cursor={{ opacity: 0.1 }} content={props => (
+                                    <CustomTooltip formatter={formatter} {...props} />
+                                ) }/>
                             </BarChart>
                         </ResponsiveContainer>
                     )}
@@ -188,3 +191,14 @@ function History({userSettings}: {userSettings: UserSettings }) {
 }
 
 export default History;
+
+function CustomTooltip({ active, payload, formatter }: any) {
+    if (!active || !payload || payload.length === 0) return null;
+
+    const data = payload[0].payload;
+    const {expense, income} = data;
+
+    return <div className="min-w-[300px] rounded border bg-background p-4">
+        <TooltipRow formatter={formatter} label="Expense" value={expense} bgColor="bg-red-500" textColor="text-red-500" />
+    </div>;
+}
