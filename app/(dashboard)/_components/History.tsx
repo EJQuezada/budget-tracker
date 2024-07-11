@@ -130,6 +130,45 @@ function History({userSettings}: {userSettings: UserSettings }) {
                                     strokeOpacity={"0.2"} 
                                     vertical={false}
                                 />
+                                <XAxis
+                                    stroke="#888888" 
+                                    fontSize={12}
+                                    tickLine={false}
+                                    axisLine={false}
+                                    padding={{left: 5, right: 5}}
+                                    dataKey={(data) => {
+                                        const {year, month, day} = data;
+                                        const date = new Date(year, month, day || 1);
+                                        if (timeframe === "year"){
+                                            return date.toLocaleDateString("default", {
+                                                month: "long",
+                                            });
+                                        }
+                                        return date.toLocaleDateString("default", {
+                                            day: "2-digit",
+                                        });
+                                    }}
+                                />
+                                <YAxis 
+                                    stroke="#888888" 
+                                    fontSize={12}
+                                    tickLine={false}
+                                    axisLine={false}
+                                />
+                                <Bar 
+                                    dataKey={"income"} 
+                                    label="Income" 
+                                    fill="url(#incomeBar)" 
+                                    radius={4} 
+                                    className="cursor-pointer" 
+                                />
+                                <Bar 
+                                    dataKey={"expense"} 
+                                    label="Expense" 
+                                    fill="url(#expenseBar)" 
+                                    radius={4} 
+                                    className="cursor-pointer" 
+                                />
                             </BarChart>
                         </ResponsiveContainer>
                     )}
