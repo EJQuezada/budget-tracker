@@ -7,7 +7,7 @@ import { Period, Timeframe } from "@/lib/types";
 import { UserSettings } from "@prisma/client";
 import React, { useCallback, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-import CountUp from "react-countup/build/CountUp";
+import CountUp from "react-countup";
 import HistoryPeriodSelector from "@/app/(dashboard)/_components/HistoryPeriodSelector";
 import { useQuery } from "@tanstack/react-query";
 import SkeletonWrapper from "@/components/SkeletonWrapper";
