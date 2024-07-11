@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GetFormatterForCurrency } from "@/lib/helpers";
 import { Period, Timeframe } from "@/lib/types";
 import { UserSettings } from "@prisma/client";
@@ -10,6 +10,16 @@ import { cn } from "@/lib/utils";
 import CountUp from "react-countup/build/CountUp";
 import HistoryPeriodSelector from "@/app/(dashboard)/_components/HistoryPeriodSelector";
 import { useQuery } from "@tanstack/react-query";
+import SkeletonWrapper from "@/components/SkeletonWrapper";
+import {
+    Bar,
+    BarChart, 
+    CartesianGrid,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis,
+} from "recharts";
 
 function History({userSettings}: {userSettings: UserSettings }) {
   const [timeframe, setTimeframe] = useState<Timeframe>("month");
@@ -30,7 +40,7 @@ function History({userSettings}: {userSettings: UserSettings }) {
   });
 
   const dataAvailable = historyDataQuery.data && historyDataQuery.data.length > 0;
-  
+
   return (
     <div className="container">
         <h2 className="mt-12 text-3xl font-bold">History</h2>
@@ -64,6 +74,75 @@ function History({userSettings}: {userSettings: UserSettings }) {
                     </div>
                 </CardTitle>
             </CardHeader>
+            <CardContent>
+                <SkeletonWrapper isLoading={historyDataQuery.isFetching}>
+                    {dataAvailable && (
+                        <ResponsiveContainer 
+                            width={"100%"}
+                            height={300}    
+                        >
+                            <BarChart 
+                                height={300} 
+                                data={historyDataQuery.data} 
+                                barCategoryGap={5}
+                            >
+                                <defs>
+                                    <linearGradient 
+                                        id="incomeBar" 
+                                        x1="0" 
+                                        y1="0" 
+                                        x2="0" 
+                                        y2="1"
+                                    >
+                                        <stop 
+                                            offset={"0"} 
+                                            stopColor="#10b981" 
+                                            stopOpacity={"1"} 
+                                        />
+                                        <stop 
+                                            offset={"1"} 
+                                            stopColor="#10b981" 
+                                            stopOpacity={"0"} 
+                                        />
+                                    </linearGradient>
+
+                                    <linearGradient 
+                                        id="expenseBar" 
+                                        x1="0" 
+                                        y1="0" 
+                                        x2="0" 
+                                        y2="1"
+                                    >
+                                        <stop 
+                                            offset={"0"} 
+                                            stopColor="#ef4444" 
+                                            stopOpacity={"1"} 
+                                        />
+                                        <stop 
+                                            offset={"1"} 
+                                            stopColor="#ef4444" 
+                                            stopOpacity={"0"} 
+                                        />
+                                    </linearGradient>
+                                </defs>
+                                <CartesianGrid 
+                                    strokeDasharray="5 5" 
+                                    strokeOpacity={"0.2"} 
+                                    vertical={false}
+                                />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    )}
+                    {!dataAvailable && (
+                        <Card className="h-[300px] flex-col items-center justify-center bg-background">
+                            No data for the selected period
+                            <p className="text-sm text-muted-foreground">
+                               Try selecting a different period or adding new transactions
+                            </p>
+                        </Card>
+                    )}
+                </SkeletonWrapper>
+            </CardContent>
         </Card>
     </div>
   );
