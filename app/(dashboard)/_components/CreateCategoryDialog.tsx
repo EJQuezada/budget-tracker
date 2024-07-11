@@ -1,16 +1,39 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { 
+    Dialog, 
+    DialogClose, 
+    DialogContent, 
+    DialogDescription, 
+    DialogFooter, 
+    DialogHeader, 
+    DialogTitle, 
+    DialogTrigger, 
+} from "@/components/ui/dialog";
+import { 
+    Form, 
+    FormControl, 
+    FormDescription, 
+    FormField, 
+    FormItem, 
+    FormLabel 
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { 
+    Popover, 
+    PopoverContent, 
+    PopoverTrigger 
+} from "@/components/ui/popover";
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { CreateCategorySchema, CreateCategorySchemaType } from "@/schema/categories";
+import { 
+    CreateCategorySchema, 
+    CreateCategorySchemaType 
+} from "@/schema/categories";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleOff, Loader2, PlusSquare } from "lucide-react";
-import React, { useCallback, useState } from "react";
+import React, { ReactNode, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
@@ -22,10 +45,11 @@ import { useTheme } from "next-themes";
 
 interface Props {
     type: TransactionType;
-    successCallback: (Category:Category) => void;
+    successCallback: (category: Category) => void;
+    trigger?: ReactNode;
 }
 
-function CreateCategoryDialog({ type, successCallback }: Props) {
+function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
     const [open, setOpen] = useState(false);
     const form = useForm<CreateCategorySchemaType>({
         resolver: zodResolver(CreateCategorySchema),
