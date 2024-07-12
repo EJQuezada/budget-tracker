@@ -28,7 +28,7 @@ function DeleteCategoryDialog({ category, trigger }: Props) {
         });
       },
       onError: () => {
-        toast.error("Something went wrong." {
+        toast.error("Something went wrong", {
           id: categoryIdentifier,
         });
       },
