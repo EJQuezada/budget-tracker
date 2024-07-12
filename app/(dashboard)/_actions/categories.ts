@@ -27,3 +27,5 @@ export async function CreateCategory(form: CreateCategorySchemaType) {
         },
     });
 }
+
+export async function DeleteCategory(form: DeleteCategorySchemaType)
