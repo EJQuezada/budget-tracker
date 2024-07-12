@@ -33,33 +33,35 @@ function DeleteCategoryDialog({ category, trigger }: Props) {
         });
       },
     });
-  return <AlertDialog>
-    <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
-    <AlertDialogContent>
-      <AlertDialogHeader>
-        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-        <AlertDialogDescription>
-          This action cannot be undone. This will permanently delete your category
-        </AlertDialogDescription>
-      </AlertDialogHeader>
-      <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction 
-          onClick={() => {
-            toast.loading("Deleting category...", {
-              id: categoryIdentifier,
-            });
-            deleteMutation.mutate({
-              name: category.name,
-              type: category.type as TransactionType,
-            });
-          }}
-        >
-          Continue
-        </AlertDialogAction>
-      </AlertDialogFooter>
-    </AlertDialogContent>
-  </AlertDialog>;
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your category
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction 
+            onClick={() => {
+              toast.loading("Deleting category...", {
+                id: categoryIdentifier,
+              });
+              deleteMutation.mutate({
+                name: category.name,
+                type: category.type as TransactionType,
+              });
+            }}
+          >
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
 }
 
 export default DeleteCategoryDialog;
