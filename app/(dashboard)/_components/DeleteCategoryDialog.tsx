@@ -16,6 +16,7 @@ interface Props {
 function DeleteCategoryDialog({ category, trigger }: Props) {
     const categoryIdentifier = `${category.name}-${category.type}`;
     const queryClient = useQueryClient();
+    
     const deleteMutation = useMutation({
       mutationFn: DeleteCategory,
       onSuccess: () => {
