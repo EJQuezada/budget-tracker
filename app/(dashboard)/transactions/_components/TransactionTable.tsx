@@ -25,6 +25,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import SkeletonWrapper from "@/components/SkeletonWrapper";
+import { DataTableColumnHeader } from "@/components/datatable/ColumnHeader";
 
 interface Props {
     from: Date;
@@ -38,6 +39,9 @@ type TransactionHistoryRow = GetTransactionHistoryResponseType[0];
 const columns: ColumnDef<TransactionHistoryRow>[] = [
     {
         accessorKey: "category",
+        header: ({column}) => (
+          <DataTableColumnHeader column={column} title="Category" /> 
+        ),
         cell: ({row}) => (
             <div className="flex gap-2 capitalize">
                 {row.original.categoryIcon}
