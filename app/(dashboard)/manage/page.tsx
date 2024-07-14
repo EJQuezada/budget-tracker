@@ -65,7 +65,7 @@ function CategoryList({type}:{ type: TransactionType }) {
     const dataAvailable = categoriesQuery.data && categoriesQuery.data.length > 0;
 
     return (
-        <SkeletonWrapper isLoading={categoriesQuery.isFetching}>
+        <SkeletonWrapper isLoading={categoriesQuery.isLoading}>
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center justify-between gap-2">
@@ -141,7 +141,7 @@ function CategoryCard({ category }:{ category: Category }) {
                 </span>
                 <span>{category.name}</span>
             </div>
-            <DeleteCategoryDialog 
+            <DeleteCategoryDialog
                 category={category} 
                 trigger={
                     <Button 
