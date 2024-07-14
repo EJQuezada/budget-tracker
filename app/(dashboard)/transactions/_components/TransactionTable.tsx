@@ -2,11 +2,16 @@
 
 import { DateToUTCDate } from "@/lib/helpers";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { 
     ColumnDef,
+    ColumnFiltersState,
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    SortingState,
     useReactTable,
 } from "@tanstack/react-table";
 import { GetTransactionHistoryResponseType } from "@/app/api/transactions-history/route";
@@ -28,7 +33,8 @@ interface Props {
 const emptyData: any[] = [];
 
 type TransactionHistoryRow = GetTransactionHistoryResponseType[0];
-export const columns: ColumnDef<TransactionHistoryRow>[] = [
+
+const columns: ColumnDef<TransactionHistoryRow>[] = [
     {
         accessorKey: "category",
         cell: ({row}) => (
