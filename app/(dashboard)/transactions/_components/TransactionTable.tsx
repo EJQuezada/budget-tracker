@@ -117,6 +117,12 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
     },
 ];
 
+const csvConfig = mkConfig({
+    fieldSeparator: ",",
+    decimalSeparator: ".",
+    useKeysAsHeaders: true,
+});
+
 function TransactionTable({ from, to }: Props) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -130,6 +136,11 @@ function TransactionTable({ from, to }: Props) {
                 )}&to=${DateToUTCDate(to)}`
             ).then(res => res.json()),
     });
+
+    const handleExportCSV = (data: any[]) => {
+        const csv = generateCsv(csvConfig)(data);
+        download(csvConfig)(csv);
+    };
 
     const table = useReactTable({
         data: history.data || emptyData,
