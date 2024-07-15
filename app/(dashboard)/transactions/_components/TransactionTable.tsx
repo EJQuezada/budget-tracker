@@ -67,7 +67,12 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
         header: "Date",
         cell: ({row}) => {
             const date = new Date(row.original.date);
-            return <div className="capitalize">{row.original.description}</div>;
+            const formattedDate = date.toLocaleDateString("default", {
+                timeZone: "UTC",
+                year: "2-digit",
+                day: "2-digit"
+            });
+            return <div className="text-muted-foreground">{formattedDate}</div>;
         },
     },
 ];
