@@ -129,6 +129,18 @@ function TransactionTable({ from, to }: Props) {
         getSortedRowModel: getSortedRowModel(),
     });
 
+    const categoriesOptions = useMemo(() => {
+        const categoriesMap = new Map();
+        history.data?.forEach(transaction => {
+            categoriesMap.set(transaction.category, {
+                value: transaction.category, 
+                label: `${transaction.categoryIcon} ${transaction.category}`,
+            });
+        });
+        const uniqueCategories = new Set(categoriesMap.values());
+        return Array.from(uniqueCategories);
+    }, []);
+
     return (
         <div className="w-full">
             <div className="flex flex-wrap items-end justify-between gap-2 py-4">TODO: Filters</div>
