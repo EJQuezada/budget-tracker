@@ -44,6 +44,9 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
         header: ({column}) => (
           <DataTableColumnHeader column={column} title="Category" /> 
         ),
+        filterFn: (row, id, value) => {
+            return value.includes(row.getValue(id))
+        },
         cell: ({row}) => (
             <div className="flex gap-2 capitalize">
                 {row.original.categoryIcon}
