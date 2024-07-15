@@ -139,7 +139,7 @@ function TransactionTable({ from, to }: Props) {
         });
         const uniqueCategories = new Set(categoriesMap.values());
         return Array.from(uniqueCategories);
-    }, []);
+    }, [history.data]);
 
     return (
         <div className="w-full">
