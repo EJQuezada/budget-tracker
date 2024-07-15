@@ -66,6 +66,7 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
         accessorKey: "date",
         header: "Date",
         cell: ({row}) => {
+            const date = new Date(row.original.date);
             return <div className="capitalize">{row.original.description}</div>;
         },
     },
