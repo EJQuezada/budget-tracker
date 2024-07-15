@@ -29,6 +29,9 @@ import { DataTableColumnHeader } from "@/components/datatable/ColumnHeader";
 import { cn } from "@/lib/utils";
 import { DataTableFacetedFilter } from "@/components/datatable/FacetedFilters";
 import { DataTableViewOptions } from "@/components/datatable/ColumnToggle";
+import { Button } from "@/components/ui/button";
+
+import { download, generateCsv, mkConfig } from "export-to-csv";
 
 interface Props {
     from: Date;
@@ -140,6 +143,7 @@ function TransactionTable({ from, to }: Props) {
         onColumnFiltersChange: setColumnFilters,
         getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
     });
 
     const categoriesOptions = useMemo(() => {
@@ -224,6 +228,24 @@ function TransactionTable({ from, to }: Props) {
                         )}
                         </TableBody>
                     </Table>
+                </div>
+                <div className="flex items-center justify-end space-x-2 py-4">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => table.previousPage()}
+                        disabled={!table.getCanPreviousPage()}
+                    >
+                        Previous
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => table.nextPage()}
+                        disabled={!table.getCanNextPage()}
+                    >
+                        Next
+                    </Button>
                 </div>
             </SkeletonWrapper>
         </div>
