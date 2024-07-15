@@ -27,6 +27,7 @@ import {
 import SkeletonWrapper from "@/components/SkeletonWrapper";
 import { DataTableColumnHeader } from "@/components/datatable/ColumnHeader";
 import { cn } from "@/lib/utils";
+import { DataTableFacetedFilter } from "@/components/datatable/FacetedFilters";
 
 interface Props {
     from: Date;
@@ -108,6 +109,8 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
 
 function TransactionTable({ from, to }: Props) {
     const [sorting, setSorting] = useState<SortingState>([]);
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
     const history = useQuery<GetTransactionHistoryResponseType>({
         queryKey: ["transactions", "history", from, to],
         queryFn: () => 
@@ -124,9 +127,12 @@ function TransactionTable({ from, to }: Props) {
         getCoreRowModel: getCoreRowModel(),
         state: {
             sorting,
+            columnFilters,
         },
         onSortingChange: setSorting,
+        onColumnFiltersChange: setColumnFilters,
         getSortedRowModel: getSortedRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
     });
 
     const categoriesOptions = useMemo(() => {
@@ -143,7 +149,17 @@ function TransactionTable({ from, to }: Props) {
 
     return (
         <div className="w-full">
-            <div className="flex flex-wrap items-end justify-between gap-2 py-4">TODO: Filters</div>
+            <div className="flex flex-wrap items-end justify-between gap-2 py-4">
+                <div className="flex gap-2">
+                    {table.getColumn("category") && (
+                        <DataTableFacetedFilter 
+                            title="Category" 
+                            column={table.getColumn("category")} 
+                            options={categoriesOptions}
+                        />
+                    )}
+                </div>
+            </div>
             <SkeletonWrapper isLoading={history.isFetching}>
                 <div className="rounded-md border">
                     <Table>
