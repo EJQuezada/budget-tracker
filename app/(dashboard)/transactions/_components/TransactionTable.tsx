@@ -45,7 +45,7 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
           <DataTableColumnHeader column={column} title="Category" /> 
         ),
         filterFn: (row, id, value) => {
-            return value.includes(row.getValue(id))
+            return value.includes(row.getValue(id));
         },
         cell: ({row}) => (
             <div className="flex gap-2 capitalize">
@@ -85,6 +85,9 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
         header: ({column}) => (
           <DataTableColumnHeader column={column} title="Type" /> 
         ),
+        filterFn: (row, id, value) => {
+            return value.includes(row.getValue(id));
+        },
         cell: ({ row }) => (
             <div 
                 className={cn(
@@ -159,6 +162,16 @@ function TransactionTable({ from, to }: Props) {
                             title="Category" 
                             column={table.getColumn("category")} 
                             options={categoriesOptions}
+                        />
+                    )}
+                    {table.getColumn("type") && (
+                        <DataTableFacetedFilter 
+                            title="Tyoe" 
+                            column={table.getColumn("type")} 
+                            options={[
+                                {label: "Income", value: "income"},
+                                {label: "Expense", value: "expense"},
+                            ]}
                         />
                     )}
                 </div>
