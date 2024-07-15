@@ -167,7 +167,7 @@ function TransactionTable({ from, to }: Props) {
                     )}
                     {table.getColumn("type") && (
                         <DataTableFacetedFilter 
-                            title="Tyoe" 
+                            title="Type" 
                             column={table.getColumn("type")} 
                             options={[
                                 {label: "Income", value: "income"},
