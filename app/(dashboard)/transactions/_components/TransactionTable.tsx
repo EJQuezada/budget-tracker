@@ -51,9 +51,28 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
             </div>
         ),
     },
+    {
+        accessorKey: "description",
+        header: ({column}) => (
+          <DataTableColumnHeader column={column} title="Description" /> 
+        ),
+        cell: ({row}) => (
+            <div className="capitalize">
+                {row.original.description}
+            </div>
+        ),
+    },
+    {
+        accessorKey: "date",
+        header: "Date",
+        cell: ({row}) => {
+            return <div className="capitalize">{row.original.description}</div>;
+        },
+    },
 ];
 
 function TransactionTable({ from, to }: Props) {
+    const [sorting, setSorting] = useState<SortingState>([]);
     const history = useQuery<GetTransactionHistoryResponseType>({
         queryKey: ["transactions", "history", from, to],
         queryFn: () => 
@@ -68,6 +87,11 @@ function TransactionTable({ from, to }: Props) {
         data: history.data || emptyData,
         columns,
         getCoreRowModel: getCoreRowModel(),
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
+        getSortedRowModel: getSortedRowModel(),
     });
 
     return (
