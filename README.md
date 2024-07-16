@@ -1,5 +1,7 @@
 # BUDGET TRACKER APPLICATION
 
+![image](https://github.com/user-attachments/assets/439c59d6-5a81-47ef-9371-99ab13df9cb4)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
