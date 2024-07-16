@@ -1,6 +1,12 @@
 "use client";
 
-import React from "react';
+import React from "react";
+
+interface Props {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    transactionId: string;
+}
 
 function DeleteTransactionDialog() {
     return <div>DeleteTransactionDialog</div>;
