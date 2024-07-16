@@ -8,7 +8,8 @@ interface Props {
     transactionId: string;
 }
 
-function DeleteTransactionDialog() {
+function DeleteTransactionDialog({ open, setOpen, transactionId }: Props) 
+{
     return <div>DeleteTransactionDialog</div>;
 }
 
