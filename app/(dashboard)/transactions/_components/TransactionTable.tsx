@@ -116,6 +116,13 @@ const columns: ColumnDef<TransactionHistoryRow>[] = [
             </p>
         ),
     },
+    {
+        id: "actions",
+        enableHiding: false,
+        cell: ({ row }) => (
+            <RowActions transaction={row.original} />
+        ),
+    }
 ];
 
 const csvConfig = mkConfig({
@@ -286,3 +293,7 @@ function TransactionTable({ from, to }: Props) {
 }
 
 export default TransactionTable;
+
+function RowActions({transaction}:{transaction:TransactionHistoryRow}){
+    
+}
