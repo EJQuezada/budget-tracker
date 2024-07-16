@@ -3,6 +3,8 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import React from "react";
 import { toast } from "sonner";
+import { DeleteTransaction } from "../_actions/deleteTransaction";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
     open: boolean;
@@ -37,7 +39,7 @@ function DeleteTransactionDialog({ open, setOpen, transactionId }: Props)
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your category
+              This action cannot be undone. This will permanently delete your transaction
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
