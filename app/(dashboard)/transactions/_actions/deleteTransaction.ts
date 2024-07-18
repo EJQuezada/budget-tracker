@@ -30,7 +30,7 @@ export async function DeleteTransaction(id: string) {
             },
         }),
         //Update month history
-        prisma.MonthHistory.update({
+        prisma.monthHistory.update({
             where: {
                 day_month_year_userId: {
                     userId: user.id,
