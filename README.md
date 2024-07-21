@@ -40,6 +40,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Live version
--Open [https://budget-tracker-five-liart.vercel.app/](https://budget-tracker-five-liart.vercel.app/) in your favorite browser and create a login or use your Gmail account to login securely. 
--Once you are logged in, select the currency from the dropdown menu and click the set currency button at bottom of screen to be taken to the actual budget tracker site.
--In Budget Tracker site, you can create new deposit or withdrawal transactions and assign a category and emoticon to this category to faciliate tracking income/expenses.
+- Open [https://budget-tracker-five-liart.vercel.app/](https://budget-tracker-five-liart.vercel.app/) in your favorite browser and create a login or use your Gmail account to login securely. 
+- Once you are logged in, select the currency from the dropdown menu, and click the set currency button at bottom of screen to be taken to the actual budget tracker site.
+- In the Budget Tracker site, you can create new deposit or withdrawal transactions and assign a category and emoticon to this category to faciliate tracking income/expenses. Moreover, at the bottom of the screen there is a chart that helps you visualize how much goes in to the account and how much is taken out for each category within a time period.
